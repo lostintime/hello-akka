@@ -1,0 +1,39 @@
+version: '3'
+
+services:
+  app-seed:
+    image: "lostintime/hello-akka:latest"
+    command: "-Dakka.cluster.seed-nodes.0=akka.tcp://HelloAkka@app-seed:2552 -jar /app/hello-akka.jar"
+    environment:
+     - 'PUBLISH_HOST=app-seed'
+    expose:
+     - 2552
+    stop_grace_period: 15s
+    deploy:
+      mode: replicated
+      replicas: 1 # DO NOT SCALE THIS SERVICE!
+      update_config:
+        parallelism: 1
+        delay: 15s
+      restart_policy:
+        condition: on-failure
+        delay: 20s
+        max_attempts: 5
+        window: 120s
+  app:
+    image: "lostintime/hello-akka:latest"
+    command: "-Dakka.cluster.seed-nodes.0=akka.tcp://HelloAkka@app-seed:2552 -jar /app/hello-akka.jar"
+    expose:
+     - 2552
+    stop_grace_period: 15s
+    deploy:
+      mode: replicated
+      replicas: 1
+      update_config:
+        parallelism: 1
+        delay: 15s
+      restart_policy:
+        condition: on-failure
+        delay: 20s
+        max_attempts: 5
+        window: 120s

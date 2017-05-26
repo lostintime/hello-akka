@@ -15,6 +15,6 @@ trait HelloAkka extends App {
   def log: LoggingAdapter = Logging(actorSystem, this.getClass)
 }
 
-object Boot extends HelloAkka{
+object Boot extends HelloAkka {
   log.info(s"server is online")
 }

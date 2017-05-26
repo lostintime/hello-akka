@@ -25,9 +25,9 @@ lazy val dockerSettings = Seq(
     }
   },
   imageNames in docker := Seq(
-    ImageName(s"lostintime/hello-akka/${name.value}:latest"),
+    ImageName(s"lostintime/${name.value}:latest"),
     ImageName(
-      namespace = Some("lostintime/hello-akka"),
+      namespace = Some("lostintime"),
       repository = name.value,
       tag = Some(version.value)
     )
@@ -51,3 +51,4 @@ lazy val `hello-akka` = (project in file("."))
       "com.typesafe.akka" %% "akka-cluster-metrics" % akkaV
     )
   )
+  .enablePlugins(DockerPlugin)
