@@ -43,12 +43,14 @@ lazy val `hello-akka` = (project in file("."))
     organization := "com.lostintimedev",
     name := "hello-akka",
     version := "0.1.0",
+    mainClass in Compile := Some("com.lostintimedev.hello.Boot"),
     libraryDependencies ++= Seq(
       // akka
       "com.typesafe" % "config" % "1.3.1",
       "com.typesafe.akka" %% "akka-actor" % akkaV,
       "com.typesafe.akka" %% "akka-cluster" % akkaV,
-      "com.typesafe.akka" %% "akka-cluster-metrics" % akkaV
+      "com.typesafe.akka" %% "akka-cluster-metrics" % akkaV,
+      "com.typesafe.akka" %% "akka-cluster-tools" % akkaV
     )
   )
   .enablePlugins(DockerPlugin)
