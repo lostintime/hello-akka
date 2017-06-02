@@ -2,7 +2,7 @@ version: '3'
 
 services:
   app-seed1:
-    image: "lostintime/hello-akka:0.1.0"
+    image: "lostintime/hello-akka:0.1.1"
     command: -Dakka.cluster.seed-nodes.0=akka.tcp://HelloAkka@app-seed1:2552
              -Dakka.cluster.seed-nodes.1=akka.tcp://HelloAkka@app-seed2:2552
              -jar /app/hello-akka.jar
@@ -21,7 +21,7 @@ services:
         max_attempts: 8
         window: 3m
   app-seed2:
-    image: "lostintime/hello-akka:0.1.0"
+    image: "lostintime/hello-akka:0.1.1"
     command: -Dakka.cluster.seed-nodes.0=akka.tcp://HelloAkka@app-seed1:2552
              -Dakka.cluster.seed-nodes.1=akka.tcp://HelloAkka@app-seed2:2552
              -jar /app/hello-akka.jar
@@ -40,7 +40,7 @@ services:
         max_attempts: 8
         window: 3m
   app:
-    image: "lostintime/hello-akka:0.1.0"
+    image: "lostintime/hello-akka:0.1.1"
     command: -Dakka.cluster.seed-nodes.0=akka.tcp://HelloAkka@app-seed1:2552
              -Dakka.cluster.seed-nodes.0=akka.tcp://HelloAkka@app-seed2:2552
              -Dakka.cluster.roles.0=worker
