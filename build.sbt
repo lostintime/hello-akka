@@ -42,7 +42,7 @@ lazy val `hello-akka` = (project in file("."))
   .settings(
     organization := "com.lostintimedev",
     name := "hello-akka",
-    version := "0.1.0",
+    version := "0.1.1",
     mainClass in Compile := Some("com.lostintimedev.hello.Boot"),
     libraryDependencies ++= Seq(
       // akka
